@@ -1,0 +1,28 @@
+---
+project:
+  team: 'infra'
+  metadata:
+    name: pingdom-grafana
+    version: "0.1"
+    production:
+      project: aws
+      cluster: aws-eu-prd
+
+kubernetes:
+- id: pingdom-grafana
+  project: "{{ project }}"
+  cluster: "{{ cluster }}"
+  cpus: 0.01
+  mem: 256
+  instances: 2
+  cmd:
+  - /config/start.sh
+  ports:
+    - containerPort: 8080
+      name: http
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+    timeoutSeconds: 2
+    failureThreshold: 3

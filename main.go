@@ -5,8 +5,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
 	"regexp"
 	"sort"
+	"syscall"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -126,6 +128,9 @@ func (p *Pingdom) Collect(ch chan<- prometheus.Metric) {
 }
 
 func main() {
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, syscall.SIGTERM)
+
 	client := pingdom.NewClient(
 		os.Getenv("EMAIL"),
 		os.Getenv("PASSWORD"),
@@ -136,5 +141,12 @@ func main() {
 		simplejson.WithAnnotator(p),
 	)
 
-	http.ListenAndServe(":8080", gsj)
+	log.Println("Start server")
+	go func() {
+		if err := http.ListenAndServe(":8080", gsj); err != nil {
+			log.Fatalf("failed running server, %v", err)
+		}
+	}()
+	<-stop
+	log.Println("Stopped server")
 }
