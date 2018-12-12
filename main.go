@@ -32,6 +32,7 @@ type Pingdom struct {
 func (p *Pingdom) GrafanaAnnotations(ctx context.Context, query string, args simplejson.AnnotationsArguments) ([]simplejson.Annotation, error) {
 	chks, err := p.client.List()
 	if err != nil {
+		log.Printf("failed to list checks, %v", err)
 		return nil, err
 	}
 
@@ -41,6 +42,7 @@ func (p *Pingdom) GrafanaAnnotations(ctx context.Context, query string, args sim
 
 	qre, err := regexp.Compile(query)
 	if err != nil {
+		log.Printf("failed to compile query, %v", err)
 		return nil, err
 	}
 
