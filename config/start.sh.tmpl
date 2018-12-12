@@ -1,7 +1,7 @@
 #!/bin/sh
 
-exxport EMAIL=infra@qubit.com
-exxport PASSWORD={{ lookup "password" }}
-exxport APIKEY={{ lookup "apiKey" }}
+export EMAIL=infra@qubit.com
+export PASSWORD={{ lookup "password" }}
+export APIKEY={{ lookup "apiKey" }}
 
 exec /bin/grafana-pingdom
