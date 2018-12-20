@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -30,7 +31,7 @@ type Pingdom struct {
 
 // GrafanaAnnotations implements the Annotator of the grafana-simple-json package.
 func (p *Pingdom) GrafanaAnnotations(ctx context.Context, query string, args simplejson.AnnotationsArguments) ([]simplejson.Annotation, error) {
-	chks, err := p.client.List()
+	chks, err := p.client.List(map[string]string{"include_tags": "true"})
 	if err != nil {
 		log.Printf("failed to list checks, %v", err)
 		return nil, err
@@ -61,6 +62,8 @@ func (p *Pingdom) GrafanaAnnotations(ctx context.Context, query string, args sim
 			log.Printf("outage list failed (%v), %v", chk.ID, err)
 			continue
 		}
+
+		j, _ := json.Marshal(outs)
 
 		tags := []string{"down", chk.Hostname}
 		for _, t := range chk.Tags {
