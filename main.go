@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -63,7 +62,7 @@ func (p *Pingdom) GrafanaAnnotations(ctx context.Context, query string, args sim
 			continue
 		}
 
-		j, _ := json.Marshal(outs)
+		//j, _ := json.Marshal(outs)
 
 		tags := []string{"down", chk.Hostname}
 		for _, t := range chk.Tags {
