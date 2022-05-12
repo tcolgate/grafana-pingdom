@@ -26,5 +26,7 @@ github.com/tcolgate/grafana-simple-json-go v0.9.4 h1:VtD+sWy1luCWPu9LQjqQLa9sNkL
 github.com/tcolgate/grafana-simple-json-go v0.9.4/go.mod h1:z5sME/OZPmZUpA4KPDhpKbuPrrQHfoktrA7GwqVJvGU=
 github.com/tcolgate/grafana-simple-json-go v0.9.6 h1:wNbPWL7lSrdLDkPJBANYmXuZdIbdo+WVyb6GKC0iYIU=
 github.com/tcolgate/grafana-simple-json-go v0.9.6/go.mod h1:z5sME/OZPmZUpA4KPDhpKbuPrrQHfoktrA7GwqVJvGU=
+github.com/tcolgate/grafana-simple-json-go v0.9.7 h1:NgBYsnfxvpWVOo09zB9a6UGBBi5PlCRB+EHw/oquRbk=
+github.com/tcolgate/grafana-simple-json-go v0.9.7/go.mod h1:V6WpEH33A0k6xfs4F86R0BhdOkE+9fLx+U2jNm8JSxE=
 golang.org/x/net v0.0.0-20181201002055-351d144fa1fc/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/sync v0.0.0-20181108010431-42b317875d0f/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
